@@ -4,7 +4,7 @@ Name: Zicheng Huang
 UCID: 30009205
 Lab 05
 
-https://zichenghuangfrank.github.io/frank.github.io/SENG513A2/calculator.html
+https://zichenghuangfrank.github.io/frankA2.github.io/SENG513A2/calculator.html
 Test on Google Chrome
 
 Calculator structure and instructions: 
