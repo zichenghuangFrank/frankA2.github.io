@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Simple Calculator</title>
+</head>
+<body>
+<!--    Set the appearance for the calculator-->
+    <div class="calculatorBody">
+        <div class="container">
+
+            <div class="row">
+                <div class="displayAns col text-right" id="displayAns"></div>
+            </div>
+
+            <div class="row">
+                <div class="displayBar col text-right" id="displayBar">0</div>
+            </div>
+
+            <div class="calculatorBtn">
+
+                <!--            first row-->
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-ope btn-block btn-space" id="lb">(</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-ope btn-block btn-space" id="rb">)</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-res btn-block btn-space" id="clear">CE</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-res btn-block btn-space" id="allClear">AC</button>
+                    </div>
+                </div>
+
+                <!--            second row-->
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">7</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">8</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">9</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-ope btn-block btn-space" id="plus">+</button>
+                    </div>
+                </div>
+
+                <!--            third row-->
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">4</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">5</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">6</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-ope btn-block btn-space" id="subtract">-</button>
+                    </div>
+                </div>
+
+                <!--            fourth row-->
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">1</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">2</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">3</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-ope btn-block btn-space" id="multiply" value="*">*</button>
+                    </div>
+                </div>
+
+                <!--            fifth row-->
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn-num btn-block btn-space">0</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-dec btn-block btn-space">.</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-res btn-block btn-space" id="equal">=</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn-ope btn-block btn-space" id="divide" value="/">/</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let equation = "";
+    let result = "";
+    let ans = "0"; // Record previous answer
+    let finishFlag = false; // The symbol that finishes one calculation
+    let lastEle = ""; // The last element for the equation string
+
+    $(document).ready(function(){
+        // Click a number button
+        $(".btn-num").click(function(e){
+            if (finishFlag === true && result !== "ERROR") {
+                $("#displayAns").html("Ans = " + ans);
+            }
+            finishFlag = false;
+            equation += e.target.innerHTML;
+            $("#displayBar").html(equation);
+        });
+
+        // Click the operator button
+        $(".btn-ope").click(function (e) {
+            // Show the previous answer on the ans bar
+            if (finishFlag === true && result !== "ERROR") {
+                if ($("#displayBar").html() === "0") {
+                    equation = "0";
+                } else {
+                    equation = result;
+                }
+                $("#displayAns").html("Ans = " + ans);
+            }
+            lastEle = equation.charAt(equation.length-1);
+            // Change operator or keep
+            if (lastEle === "+" || lastEle === "-" || lastEle === "*" || lastEle === "/"){
+                equation = equation.slice(0, -1);
+            }
+            equation += e.target.innerHTML;
+            $("#displayBar").html(equation);
+        });
+
+        // Click the decimal button
+        $(".btn-dec").click(function (e) {
+            // Show the previous answer on the ans bar
+            if (finishFlag === true && result !== "ERROR") {
+                $("#displayAns").html("Ans = " + ans);
+            }
+            finishFlag = false;
+            equation += e.target.innerHTML;
+            $("#displayBar").html(equation);
+        });
+
+        // Click the equal button
+        $("#equal").click(function (e) {
+            let tempResult;
+            if (equation.length !== 0 && equation !== "Error") {
+                try {
+                    tempResult = eval(equation);
+                    result = eval(equation).toString();
+                    ans = result; // Put result into ans variable to show it on the display ans bar
+                } catch (e) {
+                    result = "Error";
+                }
+                $("#displayBar").html(result);
+                $("#displayAns").html(equation);
+            }
+            finishFlag = true;
+            equation = "";
+        });
+
+        // Click the CE button
+        $("#clear").click(function () {
+            equation = equation.slice(0, -1); // Delete the last element in the equation
+            if (equation === "") {
+                $("#displayBar").html("0");   // Reset the display bar to show "0"
+            } else {
+                $("#displayBar").html(equation);
+            }
+        });
+        // Click the AC button
+        $("#allClear").click(function () {
+            equation = "";
+            $("#displayBar").html("0"); // Reset the display bar to show "0"
+            $("#displayAns").html("Ans = " + ans);
+        });
+    });
+</script>
+</html>

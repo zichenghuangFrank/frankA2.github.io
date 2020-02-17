@@ -1,0 +1,19 @@
+SENG 513 
+Assignment 2
+Name: Zicheng Huang
+UCID: 30009205
+Lab 05
+
+https://zichenghuangfrank.github.io/frank.github.io/SENG513A2/calculator.html
+Test on Google Chrome
+
+Calculator structure and instructions: 
+1. All numbers (0-9) and the decimal point (.)
+2. Basic arithmetic operators(+,-,* and /)
+3. The backspace (CE), delete the last digit 
+4. The all clear (AC) and equal sign (=)
+5. Left and right brackets ('(' and ')')
+6. If the expression or equation is invalid, "Error" will display on the display bar
+7. After one calculation, use AC to clear all or enter a number to start a new calculation
+8. The result will show on the display bar and the ans (previous answer) will show on the display ans bar
+9. If you want to use the previous answer, click the operator button for the next calculation

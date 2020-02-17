@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.calculatorBody {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    margin: auto;
+    max-width: 600px;
+}
+.displayAns {
+    font-size: 2em;
+    height: 50px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: white;
+    overflow: scroll;
+}
+.displayBar {
+    font-size: 2em;
+    height: 50px;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    background-color: white;
+    overflow: scroll;
+}
+button {
+    border-radius: 4px;
+    border: none;
+    background-color: transparent;
+    font-size: 2rem;
+    background-image: linear-gradient(to bottom,transparent,transparent 50%,rgba(0,0,0,.04));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.05), inset 0 1px 0 0 rgba(255,255,255,.45), inset 0 -1px 0 0 rgba(255,255,255,.15), 0 1px 0 0 rgba(255,255,255,.15);
+    text-shadow: 0 1px rgba(255,255,255,.4);
+}
+.btn-num {
+    background-color:  #ebf0fa;
+}
+.btn-ope #clear #allClear {
+    background-color: #dfe1e5;
+}
+.btn-space {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+#decimal {
+    background-color: #ebf0fa;
+}
+#equal {
+    background-color: #3399ff;
+    border-color: #337cac;
+}
+button:hover {
+    background-color: #d1d1e0;
+}
+#allClear:hover {
+    background-color: #d1d1e0;
+}
+#clear:hover {
+    background-color: #d1d1e0;
+}
